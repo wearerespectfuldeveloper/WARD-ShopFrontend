@@ -1,0 +1,20 @@
+@mixin border-top {
+  border-top: 1px solid rgba($LightGrey, 0.4);
+}
+
+@mixin border-bottom {
+  border-bottom: 1px solid rgba($LightGrey, 0.4);
+}
+
+
+@mixin border-right {
+  border-right: 1px solid rgba($LightGrey, 0.4);
+}
+
+@mixin border-left {
+  border-left: 1px solid rgba($LightGrey, 0.4);
+}
+
+@mixin border-all {
+  border: 1px solid rgba($LightGrey, 0.4);
+}

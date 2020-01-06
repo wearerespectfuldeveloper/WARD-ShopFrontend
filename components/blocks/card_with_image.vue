@@ -3,6 +3,7 @@
     class="card-with-image elevation-1"
     :style="{
       'width': width,
+      'height': height,
       'border-radius': border_radius
     }"
   >
@@ -39,6 +40,10 @@ export default {
       type: String,
       default: '250px'
     },
+    height: {
+      type: String,
+      default: ''
+    },
     border_radius: {
       type: String,
       default: '4px'
@@ -70,17 +75,12 @@ export default {
 <style lang="scss" scoped>
 
 .card-with-image {
-
   overflow: hidden;
-
   .card-header {
-
     .card-thumnail {
       background-repeat: no-repeat;
       background-size: cover;
     }
-    
-
   }
 
   .card-body {

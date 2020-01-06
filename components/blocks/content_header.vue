@@ -1,9 +1,9 @@
 <template>
 <div class="content-header"
-  :style="{'textAlign': text_align}"
+  :style="{'justifyContent': text_align}"
 >
-  <h1 class="heading font--f1">{{heading}}</h1>
-  <span class="text font--f5">{{text}}</span>
+  <h1 class="font--f1">{{heading}}</h1>
+  <span class="font--small">{{text}}</span>
 </div>
 
 </template>
@@ -30,12 +30,5 @@ export default {
 <style lang="scss" scoped>
 .content-header {
   display: flex;
-  flex-direction: column;
-  .heading {
-    margin-bottom: 18px;
-  }
-  .text {
-
-  }
 }
 </style>
