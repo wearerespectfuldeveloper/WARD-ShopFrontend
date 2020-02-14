@@ -1,8 +1,11 @@
 <template>
 <div class="layout-template">
-  <div class="side-layout">
-    <slot name="drawer"></slot>
-  </div>
+  <transition name="expand" appear>
+    <div class="side-layout" >
+      <slot name="sidebar"></slot>
+    </div>
+  </transition>
+  
   <div class="main-layout">
     <div class="header">
       <slot name="header"></slot>
@@ -20,6 +23,13 @@
 
 <script>
 export default {
+  data() {
+    return {
+      show_sidebar: true,
+      show_link: true
+    }
+  },
+  
 }
 </script>
 

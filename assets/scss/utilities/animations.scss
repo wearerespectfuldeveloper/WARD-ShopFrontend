@@ -3,7 +3,11 @@
 // 숫자로 써주려면 #를 써야함
 
 .fade-enter-active, .fade-leave-active {
-  transition: opacity 1s;
+  transition: opacity 0.5s;
+}
+
+.fade-enter-active {
+  transition-delay: 0.5s;
 }
 
 .fade-enter, .fade-leave-to {

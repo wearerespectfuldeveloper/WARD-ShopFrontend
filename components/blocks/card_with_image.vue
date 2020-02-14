@@ -35,6 +35,11 @@
 
 <script>
 export default {
+  computed: {
+    productPrice () {
+      return this.price + ' 원';
+    }
+  },
   props: {
     width: {
       type: String,
@@ -63,6 +68,10 @@ export default {
     text: {
       type: String,
       default: '상품 설명'
+    },
+    price: {
+      type: String,
+      default: '0'
     },
     button_text: {
       type: String,

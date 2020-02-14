@@ -1,12 +1,18 @@
 <template>
   <div class="landing-content">
     <content-header
-      :heading="`${categoryTitle} PRODUCTS`"
+      :heading="`${categoryTitle}`"
       :text="'최고의 상품들'"
       :text_align="'center'"
     ></content-header>
 
-    <div class="item-list">
+    <transition-group
+      name="fade"
+      tag="div"
+      class="item-list"
+      appear
+      mode="out-in"
+    >
       <card-with-image
         v-for="product in products"
         :width="'400px'"
@@ -14,23 +20,31 @@
         :key="product.idx"
         :title="product.name"
         :text="product.description"
-        :thumnail_image="product.imageResource ? product.imageResource : 'https://images.unsplash.com/photo-1514342959091-2bffd8a7c4ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'"
+        :thumnail_image="
+          product.imageResource
+            ? product.imageResource
+            : 'https://images.unsplash.com/photo-1514342959091-2bffd8a7c4ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'
+        "
       ></card-with-image>
+    </transition-group>
+    <div class="infinite-scroll">
+      <infinite-scroll-trigger></infinite-scroll-trigger>
     </div>
   </div>
 </template>
 
 <script>
+// 트리거 블록
+import InfiniteScrollTrigger from "@/components/trigger/infinite_scroll_trigger.vue";
+
 import ContentHeader from "@/components/blocks/content_header.vue";
 import CardWithImage from "@/components/blocks/card_with_image.vue";
 
 export default {
   components: {
     ContentHeader,
-    CardWithImage
-  },
-  mounted() {
-    this.productsInit({ categoryIdx: "1" });
+    CardWithImage,
+    InfiniteScrollTrigger
   },
   props: {
     products: {
@@ -39,11 +53,7 @@ export default {
     },
     categoryTitle: {
       type: String,
-      default: "BEST"
-    },
-    productsInit: {
-      type: Function,
-      default: () => {}
+      default: "PRODUCT"
     }
   },
   methods: {}
@@ -68,6 +78,12 @@ export default {
     .card-with-image {
       margin: 10px 20px 70px 20px;
     }
+  }
+
+  .infinite-scroll {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
   }
 }
 </style>

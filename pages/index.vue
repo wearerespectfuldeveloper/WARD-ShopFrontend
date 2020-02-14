@@ -4,8 +4,7 @@
       <landing-header></landing-header>
       <landing-content
         :products="products"
-        :productsInit="getProducts"
-        :categoryTitle="'BEST'"
+        :categoryTitle="selected_category ? selected_category.name : 'PRODUCT'"
       ></landing-content>
     </default-page-template>
   </div>
@@ -13,7 +12,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapGetters, mapActions } from 'vuex';
 
 // TEMPLATE
 import DefaultPageTemplate from '@/components/templates/default_page_template.vue'
@@ -25,8 +24,14 @@ import LandingContent from '@/components/sections/content/landing_content_sectio
 export default {
   computed: {
     ...mapState('product', {
-      products: state => state.all_products
-    })
+      products: state => state.all_products,
+    }),
+    ...mapState('category', {
+      selected_category: state => state.selected_category
+    }),
+  },
+  mounted() {
+    this.getProducts({ categoryIdx: '5' });
   },
   components: {
     DefaultPageTemplate,

@@ -77,7 +77,6 @@ export const actions = {
 
     this.$axios.get(`${requestUrl ? requestUrl : ""}/products?categoryIdx=${categoryIdx}&createdDate=${now_formatted}`)
       .then(res => {
-        console.log(res.data);
         commit('getProducts', { products: res.data });
       })
       .catch(err => {

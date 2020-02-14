@@ -35,10 +35,10 @@ export default {
         items: {
             type: Array,
             default: () => [
-                { text: '티셔츠', link: 'https://www.naver.com' },
-                { text: '아우터', link: '#' },
-                { text: '스티커', link: '#' },
-                { text: '악세사리', link: '#' },
+                { text: '인기 순', link: '#' },
+                { text: '평점 순', link: '#' },
+                { text: '낮은 가격 순', link: '#' },
+                { text: '높은 가격 순', link: '#' },
             ]
         },
         is_sticky: {

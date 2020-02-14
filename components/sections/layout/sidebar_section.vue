@@ -3,6 +3,8 @@
 >
   <page-sidebar
     :height="'100vh'"
+    :items="categories"
+    :clickEvent="clickEvent"
   ></page-sidebar>
 </div>
 </template>
@@ -11,11 +13,19 @@
 import PageSidebar from '@/components/blocks/page_sidebar.vue';
 
 export default {
-  
   components: {
     PageSidebar
   },
-  
+  props: {
+    categories: {
+      type: Array,
+      default: () => []
+    },
+    clickEvent: {
+      type: Function,
+      default: () => {}
+    }
+  }
 }
 </script>
 
