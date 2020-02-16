@@ -23,6 +23,9 @@
       <span class="card-text font--small">
         {{text}}
       </span>
+      <span class="card-text font--small">
+        {{price}}원
+      </span>
       <div class="card-buttons">
         <a class="card-button font--link">
           {{button_text}}
@@ -35,11 +38,6 @@
 
 <script>
 export default {
-  computed: {
-    productPrice () {
-      return this.price + ' 원';
-    }
-  },
   props: {
     width: {
       type: String,

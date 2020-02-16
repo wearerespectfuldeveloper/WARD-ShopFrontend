@@ -20,6 +20,7 @@
         :key="product.idx"
         :title="product.name"
         :text="product.description"
+        :price="product.price"
         :thumnail_image="
           product.imageResource
             ? product.imageResource

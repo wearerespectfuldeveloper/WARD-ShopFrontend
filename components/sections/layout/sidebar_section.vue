@@ -1,6 +1,9 @@
 <template>
 <div class="sidebar-section"
 >
+  <div class="brand">
+    <h1 class="brand-title">WARD</h1>
+  </div>
   <page-sidebar
     :height="'100vh'"
     :items="categories"
@@ -33,6 +36,12 @@ export default {
 .sidebar-section {
   position: fixed;
   width: 300px;
+
+  .brand {
+    .brand-title {
+      padding: 10px;
+    }
+  }
 
   // fixed의 경우엔 어쩔 수 없이 반응형에 대한 컨트롤을 섹션에 추가해야 함.
   @media screen and (max-width: 1100px) {

@@ -33,6 +33,28 @@ export const mutations = {
       }
       state.all_products.splice(target_index, 1);
     });
+  },
+  productSort (state, { idx, sort_by }) {
+    switch (sort_by) {
+      case "popularity":
+        
+        break;
+
+      case "rating":
+        
+        break;
+
+      case "high-price":
+        
+        break;
+
+      case "low-price":
+        
+        break;
+
+      default:
+        break;
+    }
   }
 }
 

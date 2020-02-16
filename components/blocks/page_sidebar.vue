@@ -10,7 +10,7 @@
       v-for="item in items"
       :key="item.idx"
     > 
-      <h1 class="list-title font--small-caps" @click="clickEvent(item.idx); getProducts({categoryIdx: item.idx})">
+      <h1 class="list-title font--small-caps" @click="clickEvent(item.idx);">
         {{item.name}}
       </h1>
       <divider
@@ -70,12 +70,12 @@ export default {
 <style lang="scss" scoped>
 .page-sidebar {
   background-color: $Light;
+  @include container-scroll-y;
 
   .list {
     width: 100%;
 
     .list-title {
-      cursor: pointer;
       padding: 19px;
       color: $Dark;
     }
