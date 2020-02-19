@@ -1,33 +1,33 @@
 <template>
-<div class="product-main-desc-card"
-   :style="{
-    'width': width,
-    'height': height,
-  }"
->
-  <div class="product">
-    <!-- 아 이게 백그라운드 이미지라서 그렇군 -->
-    <img class="product-image"
-      :src="product_image_link"
-      :style="{
-        'width': image_width,
-        'minHeight': image_height
-      }"
-    />
+  <div
+    class="product-main-desc-card"
+    :style="{
+      width: width,
+      height: height
+    }"
+  >
+    <div class="product">
+      <!-- 아 이게 백그라운드 이미지라서 그렇군 -->
+      <img
+        class="product-image"
+        :src="product_image_link"
+        :style="{
+          width: image_width,
+          minHeight: image_height
+        }"
+      />
 
-    <div class="product-info">
-      <div class="info-text">
-        <div class="name font--f4">
-          {{product_name}}
+      <div class="product-info">
+        <div class="info-text">
+          <div class="name font--f4">
+            {{ product_name }}
+          </div>
+          <div class="desc font--f5">{{ product_desc }}</div>
         </div>
-        <div class="desc font--f5" v-html="product_desc">
-        </div>
+        <slot name="extra-feature"></slot>
       </div>
-      <slot name="extra-feature"></slot>
     </div>
   </div>
-  
-</div>
 </template>
 
 <script>
@@ -35,27 +35,28 @@ export default {
   props: {
     width: {
       type: String,
-      default: ''
+      default: ""
     },
     height: {
       type: String,
-      default: '800px'
+      default: "800px"
     },
     image_width: {
       type: String,
-      default: '50%'
+      default: "50%"
     },
     image_height: {
       type: String,
-      default: '50%'
+      default: "50%"
     },
     product_image_link: {
       type: String,
-      default: 'https://images.unsplash.com/photo-1514342959091-2bffd8a7c4ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'
+      default:
+        "https://images.unsplash.com/photo-1514342959091-2bffd8a7c4ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
     },
     product_name: {
       type: String,
-      default: '상품 이름'
+      default: "상품 이름"
     },
     product_desc: {
       type: String,
@@ -63,9 +64,13 @@ export default {
       <br />
       <br />
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`
-          }
+    },
+    product_price: {
+      type: String | Number,
+      default: ''
+    }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -81,7 +86,6 @@ export default {
     width: 80%;
 
     .product-image {
-      
     }
 
     .product-info {
@@ -100,7 +104,6 @@ export default {
         }
 
         .desc {
-
         }
       }
     }
@@ -119,8 +122,6 @@ export default {
         height: 50%;
       }
     }
-
   }
 }
-  
 </style>

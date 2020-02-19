@@ -10,14 +10,14 @@
       v-for="item in items"
       :key="item.idx"
     > 
-      <h1 class="list-title font--small-caps" @click="clickEvent(item.idx);">
+      <h1 class="list-title font--small-caps" @click="toggleList(item.idx);">
         {{item.name}}
       </h1>
-      <divider
-      ></divider>
+      
       <li
         class="list-item font--small"
         v-for="childCategory in item.childCategories"
+        v-show="toggled_list.find(x => x === item.idx)"
         :key="childCategory.idx"
         @click="clickEvent(childCategory.idx); getProducts({categoryIdx: childCategory.idx})"
       >
@@ -26,8 +26,10 @@
         </svg>
 
         <span class="text">{{childCategory.name}}</span>
-        
+        <divider
+      ></divider>
       </li>
+      
       
     </ul>
   
@@ -40,6 +42,11 @@ import Divider from '@/components/units/divider.vue';
 import { mapActions } from 'vuex';
 
 export default {
+  data() {
+    return {
+      toggled_list: []
+    }
+  },
   components: {
     Divider
   },
@@ -63,6 +70,21 @@ export default {
   },
   methods: {
     ...mapActions('product', ['getProducts']),
+    toggleList(idx) {
+
+      const targetIndex = this.toggled_list.findIndex(x => x === idx);
+
+      console.log('targetIndex', targetIndex)
+
+      if (targetIndex !== -1) {
+        this.toggled_list.splice(targetIndex, 1);
+      } else {
+        this.toggled_list.push(idx);
+      }
+
+      console.log(this.toggled_list);
+
+    }
   }
 }
 </script>
@@ -78,6 +100,8 @@ export default {
     .list-title {
       padding: 19px;
       color: $Dark;
+      cursor: pointer;
+      @include border-bottom;
     }
 
     .list-item {

@@ -1,11 +1,13 @@
 export const state = () => ({
   notification_list: [
     {message: "", is_success: true }
-  ]
+  ],
+  sidebar_toggled: true,
+  infinite_scroll_triggerd: false
 })
 
 export const getters = {
-  notification_color (state) {
+  notification_color(state) {
     state.notification_list.map(item => {
       if (item.is_success === true) {
         item.color = 'green';
@@ -18,10 +20,18 @@ export const getters = {
 }
 
 export const mutations = {
-  setNotification (state, payload) {
+  setNotification(state, payload) {
     state.notification_list.push(payload);
-    console.log('message', state.notification_list);
-  }
+  },
+  toggleSidebar(state) {
+    state.sidebar_toggled = !state.sidebar_toggled;
+  },
+  infiniteScrollTrigger(state) {
+    state.infinite_scroll_triggerd = true;
+  },
+  infiniteScrollStop(state) {
+    state.infinite_scroll_triggerd = false;
+  },
 }
 
 // export const actions = {

@@ -1,6 +1,7 @@
 <template>
 <div class="infinite-scroll-trigger">
   <loading-dots v-if="loading"></loading-dots>
+  {{message}}
 </div>
 </template>
 
@@ -12,16 +13,39 @@ export default {
   data() {
     return {
       observer: null,
-      loading: false
+      loading: false,
+      message: ""
+    }
+  },
+  props: {
+    triggerEvent: {
+      type: Function,
+      default: () => {}
+    },
+    eventParams: {
+      type: Object,
+      default: () => ({})
+    },
+    failedMessage: {
+      type: String,
+      default: "오류"
     }
   },
   mounted () {
     this.observer = new IntersectionObserver(([entry]) => {
       if (entry && entry.isIntersecting) {
         // 비동기 데이터 GET 작업
-
-        // 성공시 loading 값을 true 로 전환 실패시 그대로 둔다.
         this.loading = true;
+        // this.triggerEvent(eventParams)
+        //   .then(res => {
+        //     this.loading = false;
+        //   })
+        //   .catch(err => {
+        //     this.loading = false;
+        //     this.message = this.failedMessage;
+        //   })
+        // // 성공시 loading 값을 true 로 전환 실패시 그대로 둔다.
+
       }
     });
     this.observer.observe(this.$el);

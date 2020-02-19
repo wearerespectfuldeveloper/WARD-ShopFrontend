@@ -1,12 +1,17 @@
 <template>
-<div class="toggle-button-apps">
+<div class="toggle-button-apps" @click="clickEvent">
   <img src="@/assets/svg/icons/apps.svg" />
 </div>
 </template>
 
 <script>
 export default {
-  
+  props: {
+    clickEvent: {
+      type: Function,
+      default: () => {}
+    }
+  }
 }
 </script>
 

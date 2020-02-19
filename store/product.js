@@ -1,6 +1,6 @@
 export const state = () => ({
   all_products: null,
-  found_products: null,
+  selected_product: null,
 });
 
 export const getters = {
@@ -8,12 +8,11 @@ export const getters = {
 }
 
 export const mutations = {
-
   getProducts (state, { products }) {
     state.all_products = products;
   },
-  findProducts (state, { products }) {
-    state.found_products = products;
+  selectProduct (state, idx) {
+    state.selected_product = state.all_products.find(x => x.idx === idx);
   },
   createProduct (state, { product }) {
     state.all_products.push(product)
@@ -100,9 +99,12 @@ export const actions = {
     this.$axios.get(`${requestUrl ? requestUrl : ""}/products?categoryIdx=${categoryIdx}&createdDate=${now_formatted}`)
       .then(res => {
         commit('getProducts', { products: res.data });
+        commit('layout/infiniteScrollTrigger', {}, { root: true });
+
       })
       .catch(err => {
         commit('layout/setNotification', { message: "상품 조회 실패", is_success: false }, { root: true });
+        commit('layout/infiniteScrollStop', {}, { root: true });
       })
   },
   // 하나만 아이디를 통해 찾는 경우는 없지 않나?

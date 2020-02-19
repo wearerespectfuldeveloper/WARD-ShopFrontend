@@ -1,7 +1,9 @@
 <template>
 <div class="header-section">
   <div class="section-row">
-    <toggle-button-apps></toggle-button-apps>
+    <toggle-button-apps
+      :clickEvent="toggleSidebar"
+    ></toggle-button-apps>
     <page-header></page-header>
     <toggle-button-menu></toggle-button-menu>
   </div>
@@ -9,6 +11,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 // BLOCK
 import PageHeader from '@/components/blocks/page_header.vue';
 
@@ -23,6 +27,11 @@ export default {
     PageHeader,
     ToggleButtonApps,
     ToggleButtonMenu
+  },
+  methods: {
+    ...mapMutations('layout', [
+      'toggleSidebar'
+    ])
   }
 }
 </script>

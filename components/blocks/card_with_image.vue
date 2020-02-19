@@ -27,7 +27,7 @@
         {{price}}원
       </span>
       <div class="card-buttons">
-        <a class="card-button font--link">
+        <a class="card-button font--link" @click="button_event(idx)">
           {{button_text}}
         </a>
       </div>
@@ -59,6 +59,10 @@ export default {
       type: String,
       default: 'https://images.unsplash.com/photo-1514342959091-2bffd8a7c4ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'
     },
+    idx: {
+      type: String | Number,
+      required: true
+    },
     title: {
       type: String,
       default: '상품 이름'
@@ -68,12 +72,16 @@ export default {
       default: '상품 설명'
     },
     price: {
-      type: String,
+      type: String | Number,
       default: '0'
     },
     button_text: {
       type: String,
       default: '더 보기'
+    },
+    button_event: {
+      type: Function,
+      default: () => {}
     }
   }
 }

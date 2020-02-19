@@ -1,10 +1,8 @@
 <template>
 <div class="layout-template">
-  <transition name="expand" appear>
-    <div class="side-layout" >
-      <slot name="sidebar"></slot>
-    </div>
-  </transition>
+  <div class="side-layout" v-if="sidebar_toggled">
+    <slot name="sidebar"></slot>
+  </div>
   
   <div class="main-layout">
     <div class="header">
@@ -22,6 +20,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   data() {
     return {
@@ -29,7 +29,11 @@ export default {
       show_link: true
     }
   },
-  
+  computed: {
+    ...mapState('layout', {
+      sidebar_toggled: state => state.sidebar_toggled
+    })
+  }
 }
 </script>
 
@@ -50,10 +54,10 @@ export default {
 
   .side-layout {
     min-width: 300px;
-    position: relative;
     
     @media screen and (max-width: 900px) {
-      display: none;
+      position: relative;
+      z-index: 100;
     }
     
     @media screen and (max-width: 1100px) {
@@ -66,6 +70,7 @@ export default {
   grid-area: header;
   padding: 0px 70px 0px 70px;
   position: sticky;
+  z-index: 10;
   background-color: white;
   top: 0;
   @include border-bottom;

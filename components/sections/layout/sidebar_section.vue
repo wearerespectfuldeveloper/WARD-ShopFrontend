@@ -2,7 +2,7 @@
 <div class="sidebar-section"
 >
   <div class="brand">
-    <h1 class="brand-title">WARD</h1>
+    <h1 class="brand-title" @click="$router.push('/')">WARD</h1>
   </div>
   <page-sidebar
     :height="'100vh'"
@@ -28,7 +28,7 @@ export default {
       type: Function,
       default: () => {}
     }
-  }
+  },
 }
 </script>
 
@@ -39,8 +39,12 @@ export default {
 
   .brand {
     .brand-title {
-      padding: 10px;
+      cursor: pointer;
+      color: $Dark;
+      font-size: 25px;
+      padding: 14px 14px 12px 18px;
     }
+    @include border-bottom;
   }
 
   // fixed의 경우엔 어쩔 수 없이 반응형에 대한 컨트롤을 섹션에 추가해야 함.

@@ -6,8 +6,6 @@ export default function ({targets, animation}) {
       }
     },
     mounted () {
-      console.log(targets, animation);
-
       const elements = [];
       
       targets.forEach(target => {
@@ -18,9 +16,9 @@ export default function ({targets, animation}) {
 
       this.observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
-
+          console.log(entry);
           if (entry.intersectionRatio > 0) {
-            entry.target.style.animation = `${animation} 1s forwards ease-out`
+            entry.target.style.animation = `${animation} 1s forwards ease-out`;            
           } else {
             entry.target.style.animation = 'none';
           }
